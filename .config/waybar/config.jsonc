@@ -1,0 +1,143 @@
+{
+  "layer": "top",
+  "position": "top",
+  "spacing": 2,
+  "modules-left":[
+    "cpu",
+    "memory",
+    "pulseaudio",
+    "niri/workspaces"
+  ],
+  "modules-center":[
+    "niri/window"
+  ],
+  "modules-right":[
+    "mpris",
+    "mpd",
+    "tray",
+    "network",
+    "battery",
+    "clock",
+    "group/power"
+  ],
+  "cpu": {
+    "on-click": "foot btop",
+    "interval": 5,
+    "format": " {usage}%"
+  },
+  "memory": {
+    "format": " {used:0.1f}G",
+    "interval": 5,
+    "states": {
+      "warning":75,
+      "critical":90
+    }
+  },
+  "pulseaudio": {
+    "format": " {volume}%"
+  },
+  "tray": {
+    "spacing": 10
+  },
+  "niri/window": {
+    "separate-outputs":true,
+    "max-length": 50
+  },
+  "mpris": {
+    "format": "{player_icon} {dynamic}",
+    "format-paused": "<span color='grey'>{status_icon} {dynamic}</span>",
+    "format-stopped": "",
+    "format-disconnected": "",
+    "max-length": 50,
+    "player-icons": {
+      "default": "⏸",
+      "mpv": "🎵"
+    },
+    "status-icons": {
+      "paused": "▶"
+    }
+  },
+  "mpd": {
+    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+    "format-disconnected": "",
+    "format-stopped": "",
+    "interval": 10,
+    "max-length": 50,
+    "consume-icons": {
+      "on": " "
+    },
+    "random-icons": {
+      "off": "<span color=\"#f53c3c\"></span> ",
+      "on": " "
+    },
+    "repeat-icons": {
+      "on": " "
+    },
+    "single-icons": {
+      " on": "1 "
+    },
+    "state-icons": {
+      "paused": "",
+      "playing": ""
+    },
+    "tooltip":false
+  },
+  "network": {
+    "format-wifi": "",
+    "format-ethernet": "",
+    "format-disconnected": "󰖪",
+    "format-alt": "<span foreground='#05c6ed'>  {bandwidthDownOctets}</span> | <span foreground='#e68b0b'>  {bandwidthUpOctets}</span>",
+    "tooltip": true,
+    "tooltip-format": "Interface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+    "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-wifi": "<big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+    "interval": 2
+  },
+  "battery": {
+    "format": "{capacity}% {icon}",
+    "format-icons":[
+      "",
+      "",
+      "",
+      "",
+      ""
+    ]
+  },
+  "clock": {
+    "format-alt": "{:%a, %d. %b  %H:%M}",
+    "tooltip": true,
+    "tooltip-format": "{:%a, %d. %b  %H:%M}"
+  },
+  "group/power": {
+    "modules": [
+      "custom/lock",
+      "custom/reboot",
+      "custom/shutdown",
+      "custom/wallpaper"
+    ],
+    "orientation": "inherit",
+    "drawer": {
+      "transition-left-to-right": false
+    }
+  },
+  "custom/lock": {
+    "format": "",
+    "tooltip": false,
+    "on-double-click": "swaylock -f"
+  },
+  "custom/wallpaper": {
+    "format": "󰸉",
+    "tooltip": false,
+    "on-click": "sleep 1 && python ~/.config/scripts/wallpaper.py"
+  },
+  "custom/shutdown": {
+    "format": "",
+    "tooltip": false,
+    "on-double-click": "shutdown now"
+  },
+  "custom/reboot": {
+    "format": "󰜉",
+    "tooltip": false,
+    "on-double-click": "reboot"
+  }
+}

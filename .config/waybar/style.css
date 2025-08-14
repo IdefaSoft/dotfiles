@@ -1,0 +1,107 @@
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "Noto Sans Mono", sans-serif;
+  font-size: 16px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+window#waybar.empty #window {
+  opacity: 0;
+}
+
+#cpu,
+#memory,
+#pulseaudio,
+#tray,
+#workspaces,
+#taskbar,
+#window,
+#mpris,
+#mpd,
+#network,
+#battery,
+#clock,
+#custom-lock,
+#custom-shutdown,
+#custom-reboot,
+#custom-wallpaper
+ {
+  margin-right: 2px;
+  padding: 0 10px;
+  color: #ffffff;
+  background-color: #0a0a1a;
+  border: 1px;
+  border-style: solid;
+  border-color: #697262;
+  border-radius: 12px;
+}
+
+#workspaces button {
+  padding: 0 5px;
+  color: gray;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+}
+
+#workspaces button:nth-child(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+#workspaces button:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+#workspaces button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+  background: transparent;
+  border-bottom: 1px solid white;
+  color: white;
+}
+
+tooltip {
+  background: rgba(43, 48, 59, 0.9);
+  border: 1px solid rgba(100, 114, 125, 0.5);
+  border-radius: 6px;
+}
+
+tooltip label {
+  color: white;
+}
+
+#battery {
+  background-color: #ffffff;
+  color: black;
+}
+
+#battery.charging,
+#battery.full,
+#battery.plugged {
+  color: white;
+  background-color: #26A65B;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: black;
+  }
+}
+
+#battery.warning:not(.charging) {
+  background: #f53c3c;
+  color: white;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}

@@ -1,0 +1,218 @@
+// This config is in the KDL format: https://kdl.dev
+// "/-" comments out the following node.
+// Check the wiki for a full description of the configuration:
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
+// This config is made for a laptop or a computer with a single monitor and a french keyboard layout.
+
+
+// Input device configuration.
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+input {
+    keyboard {
+        xkb {
+            layout "fr"
+        }
+        // numlock
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+    // focus-follows-mouse
+}
+
+// Settings that influence how windows are positioned and sized.
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
+layout {
+    gaps 6
+    center-focused-column "never"
+    default-column-width { proportion 0.5; }
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+    preset-window-heights { 
+        proportion 0.5
+        proportion 1.0
+    }
+    focus-ring {
+        off
+    }
+    border {
+        width 3
+        active-gradient from="#939ca0" to="#c4c9c7" angle=135
+        inactive-gradient from="#24301c" to="#69835a" angle=135
+        urgent-color "#9b0000"
+    }
+    shadow {
+        on
+        softness 5
+        spread 0 
+        offset x=10 y=10
+        color "#0009"
+    }
+}
+
+// Window rules let you adjust behavior for individual windows.
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+window-rule {
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+window-rule {
+    match is-active=false
+    opacity 0.9
+}
+window-rule {
+    match is-active=true
+    opacity 0.99
+}
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+window-rule {
+    match app-id=r#"^org\.telegram\.desktop$"# title="^Media viewer$"
+    open-floating true
+}
+window-rule {
+    match app-id=r#"^vesktop$"#
+    open-maximized true
+    block-out-from "screencast"
+}
+
+// Settings that influence how keybindings work.
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+binds {
+    // Applications
+    Mod+T       { spawn "foot"; }
+    Mod+D       { spawn "fuzzel"; }
+    Super+Alt+L { spawn "swaylock"; }
+
+    // System
+    XF86AudioRaiseVolume allow-when-locked=true  { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }
+    XF86AudioLowerVolume allow-when-locked=true  { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05-"; }
+    XF86AudioMute allow-when-locked=true         { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute allow-when-locked=true      { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86MonBrightnessUp allow-when-locked=true   { spawn "brightnessctl" "set" "+5%" ; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "set" "5%-" ; }
+    XF86AudioPlay allow-when-locked=true         { spawn "playerctl" "play-pause"; }
+    XF86AudioPause allow-when-locked=true        { spawn "playerctl" "pause"; }
+    XF86AudioNext allow-when-locked=true         { spawn "playerctl" "next"; }
+    XF86AudioPrev allow-when-locked=true         { spawn "playerctl" "previous"; }
+
+    // Windows and columns
+    Mod+Q                          { close-window; }
+    Mod+Left                       { focus-column-left; }
+    Mod+Down                       { focus-window-or-workspace-down; }
+    Mod+Up                         { focus-window-or-workspace-up; }
+    Mod+Right                      { focus-column-right; }
+    Mod+Shift+Left                 { move-column-left; }
+    Mod+Shift+Down                 { move-window-down-or-to-workspace-down; }
+    Mod+Shift+Up                   { move-window-up-or-to-workspace-up; }
+    Mod+Shift+Right                { move-column-right; }
+    Mod+Home                       { focus-column-first; }
+    Mod+End                        { focus-column-last; }
+    Mod+Ctrl+Home                  { move-column-to-first; }
+    Mod+Ctrl+End                   { move-column-to-last; }
+    Mod+Parenright                 { set-column-width "-10%"; }
+    Mod+Equal                      { set-column-width "+10%"; }
+    Mod+Shift+Parenright           { set-window-height "-10%"; }
+    Mod+Shift+Equal                { set-window-height "+10%"; }
+    Mod+WheelScrollRight           { focus-column-right; }
+    Mod+WheelScrollLeft            { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight      { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft       { move-column-left; }
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+    Mod+V                          { toggle-window-floating; }
+    Mod+Shift+V                    { switch-focus-between-floating-and-tiling; }
+    Mod+W                          { toggle-column-tabbed-display; }
+    Mod+Colon                      { consume-or-expel-window-left; }
+    Mod+Exclam                     { consume-or-expel-window-right; }
+    Mod+Comma                      { consume-window-into-column; }
+    Mod+Semicolon                  { expel-window-from-column; }
+    Mod+R                          { switch-preset-column-width; }
+    Mod+Shift+R                    { switch-preset-window-height; }
+    Mod+Ctrl+R                     { reset-window-height; }
+    Mod+F                          { maximize-column; }
+    Mod+Shift+F                    { fullscreen-window; }
+    Mod+Ctrl+F                     { expand-column-to-available-width; }
+    Mod+C                          { center-column; }
+    Mod+Ctrl+C                     { center-visible-columns; }
+
+    // Workspaces
+    Mod+O repeat=false       { toggle-overview; }
+    Mod+Page_Down            { focus-workspace-down; }
+    Mod+Page_Up              { focus-workspace-up; }
+    Mod+Ctrl+Page_Down       { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up         { move-column-to-workspace-up; }
+    Mod+Shift+Page_Down      { move-workspace-down; }
+    Mod+Shift+Page_Up        { move-workspace-up; }
+    Mod+Ampersand            { focus-workspace 1; }
+    Mod+Eacute               { focus-workspace 2; }
+    Mod+Quotedbl             { focus-workspace 3; }
+    Mod+Apostrophe           { focus-workspace 4; }
+    Mod+Parenleft            { focus-workspace 5; }
+    Mod+Minus                { focus-workspace 6; }
+    Mod+Egrave               { focus-workspace 7; }
+    Mod+Underscore           { focus-workspace 8; }
+    Mod+Ccedilla             { focus-workspace 9; }
+    Mod+Shift+Ampersand      { move-column-to-workspace 1; }
+    Mod+Shift+Eacute         { move-column-to-workspace 2; }
+    Mod+Shift+Quotedbl       { move-column-to-workspace 3; }
+    Mod+Shift+Apostrophe     { move-column-to-workspace 4; }
+    Mod+Shift+Parenleft      { move-column-to-workspace 5; }
+    Mod+Shift+Minus          { move-column-to-workspace 6; }
+    Mod+Shift+Egrave         { move-column-to-workspace 7; }
+    Mod+Shift+Underscore     { move-column-to-workspace 8; }
+    Mod+Shift+Ccedilla       { move-column-to-workspace 9; }
+    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    Ctrl+Alt+Delete { quit; }
+    Mod+Shift+P { power-off-monitors; }
+}
+
+// Animation settings.
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
+animations {
+}
+
+// Other settings that don't fit into other categories.
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous
+spawn-at-startup "waybar"
+spawn-at-startup "mako"
+spawn-at-startup "swww-daemon"
+spawn-at-startup "foot" "--server"
+spawn-at-startup "swayidle" "-w" "timeout" "601" "swaylock -f" "before-sleep" "swaylock -f"
+spawn-at-startup "systemd-run" "--user" "--on-calendar='*:0/10'" "python" "/home/idefa/.config/scripts/wallpaper.py"
+
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+cursor {
+    hide-after-inactive-ms 3000
+}
+hotkey-overlay {
+    skip-at-startup
+}
+overview {
+    zoom 0.6
+    backdrop-color "#13205d"
+}
+environment {
+    TERMINAL "foot"
+    EDITOR "nano"
+    DISPLAY ":0"
+    ELECTRON_OZONE_PLATFORM_HINT "wayland"
+}
