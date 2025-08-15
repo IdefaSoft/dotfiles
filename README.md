@@ -8,6 +8,8 @@ My personal configuration files for my arch setup.
 - **[waybar](https://github.com/Alexays/Waybar)** - Wayland status bar
 - **[foot](https://codeberg.org/dnkl/foot)** - Fast, lightweight and minimalistic Wayland terminal emulator
 - **[fastfetch](https://github.com/fastfetch-cli/fastfetch)** - System information tool
+- **[swaylock](https://github.com/swaywm/swaylock)** - Screen locker for Wayland
+- **[MPD](https://github.com/MusicPlayerDaemon/MPD)** - Music Player Daemon 
 
 ## Custom script
 

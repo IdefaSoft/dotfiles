@@ -42,8 +42,8 @@ layout {
     }
     border {
         width 3
-        active-gradient from="#939ca0" to="#c4c9c7" angle=135
-        inactive-gradient from="#24301c" to="#69835a" angle=135
+        active-gradient from="#0077FF" to="#00CFFF" angle=135
+        inactive-gradient from="#4B5C86" to="#2C3E50" angle=135
         urgent-color "#9b0000"
     }
     shadow {
@@ -89,6 +89,7 @@ binds {
     // Applications
     Mod+T       { spawn "foot"; }
     Mod+D       { spawn "fuzzel"; }
+    Mod+B       { spawn "firefox"; }
     Super+Alt+L { spawn "swaylock"; }
 
     // System
@@ -196,7 +197,7 @@ spawn-at-startup "mako"
 spawn-at-startup "swww-daemon"
 spawn-at-startup "foot" "--server"
 spawn-at-startup "swayidle" "-w" "timeout" "601" "swaylock -f" "before-sleep" "swaylock -f"
-spawn-at-startup "systemd-run" "--user" "--on-calendar='*:0/10'" "python" "/home/idefa/.config/scripts/wallpaper.py"
+spawn-at-startup "systemd-run" "--user" "--on-calendar=*:0/10" "python" "/home/idefa/.config/scripts/wallpaper.py"
 
 prefer-no-csd
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"

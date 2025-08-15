@@ -6,7 +6,8 @@
     "cpu",
     "memory",
     "pulseaudio",
-    "niri/workspaces"
+    "niri/workspaces",
+    "tray"
   ],
   "modules-center":[
     "niri/window"
@@ -14,7 +15,6 @@
   "modules-right":[
     "mpris",
     "mpd",
-    "tray",
     "network",
     "battery",
     "clock",
@@ -34,7 +34,14 @@
     }
   },
   "pulseaudio": {
-    "format": " {volume}%"
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟 {volume}%",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"],
+      "headphone": "󰋋",
+      "headset": "󰋋"
+    },
+    "tooltip-format": "{desc}"
   },
   "tray": {
     "spacing": 10
@@ -44,49 +51,40 @@
     "max-length": 50
   },
   "mpris": {
-    "format": "{player_icon} {dynamic}",
-    "format-paused": "<span color='grey'>{status_icon} {dynamic}</span>",
+    "format": "{player_icon} {title} - {artist}",
+    "format-paused": "{status_icon} {title} - {artist}",
     "format-stopped": "",
     "format-disconnected": "",
-    "max-length": 50,
+    "tooltip-format": "{dynamic}",
+    "max-length": 40,
     "player-icons": {
       "default": "⏸",
-      "mpv": "🎵"
+      "firefox": "󰈹"
     },
     "status-icons": {
       "paused": "▶"
     }
   },
   "mpd": {
-    "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
+    "format": "{stateIcon} {artist} - {title} ({album}) ",
     "format-disconnected": "",
     "format-stopped": "",
+    "tooltip-format": "[{elapsedTime:%M:%S}/{totalTime:%M:%S}] {artist} - {title} ({album})",
     "interval": 10,
-    "max-length": 50,
-    "consume-icons": {
-      "on": " "
-    },
-    "random-icons": {
-      "off": "<span color=\"#f53c3c\"></span> ",
-      "on": " "
-    },
-    "repeat-icons": {
-      "on": " "
-    },
-    "single-icons": {
-      " on": "1 "
-    },
+    "max-length": 40,
+    "on-click": "rmpc togglepause",
+    "on-click-right": "rmpc next",
+    "on-click-middle": "rmpc prev",
     "state-icons": {
-      "paused": "",
-      "playing": ""
-    },
-    "tooltip":false
+      "paused": "",
+      "playing": ""
+    }
   },
   "network": {
     "format-wifi": "",
     "format-ethernet": "",
     "format-disconnected": "󰖪",
-    "format-alt": "<span foreground='#05c6ed'>  {bandwidthDownOctets}</span> | <span foreground='#e68b0b'>  {bandwidthUpOctets}</span>",
+    "format-alt": "<span foreground='#05c6ed'> {bandwidthDownOctets}</span> | <span foreground='#e68b0b'> {bandwidthUpOctets}</span>",
     "tooltip": true,
     "tooltip-format": "Interface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
     "tooltip-format-disconnected": "Disconnected",
