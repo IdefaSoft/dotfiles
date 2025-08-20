@@ -9,7 +9,10 @@ My personal configuration files for my arch setup.
 - **[foot](https://codeberg.org/dnkl/foot)** - Fast, lightweight and minimalistic Wayland terminal emulator
 - **[fastfetch](https://github.com/fastfetch-cli/fastfetch)** - System information tool
 - **[swaylock](https://github.com/swaywm/swaylock)** - Screen locker for Wayland
-- **[MPD](https://github.com/MusicPlayerDaemon/MPD)** - Music Player Daemon 
+- **[MPD](https://github.com/MusicPlayerDaemon/MPD)** - Music Player Daemon
+
+## Screenshot
+<img width="1920" height="1200" alt="Screenshot" src="https://github.com/user-attachments/assets/27deb2b7-7bfd-42de-a395-ee2fe59994d1" />
 
 ## Custom script
 
