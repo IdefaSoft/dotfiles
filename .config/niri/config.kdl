@@ -90,7 +90,9 @@ binds {
     Mod+T       { spawn "foot"; }
     Mod+D       { spawn "fuzzel"; }
     Mod+B       { spawn "firefox"; }
+    Mod+Shift+B { spawn "firefox" "--private-window"; }
     Super+Alt+L { spawn "swaylock"; }
+    Mod+E       { spawn "thunar"; }
 
     // System
     XF86AudioRaiseVolume allow-when-locked=true  { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.05+"; }

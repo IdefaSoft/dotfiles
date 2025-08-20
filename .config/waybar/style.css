@@ -37,7 +37,7 @@ window#waybar.empty #window {
   background-color: #0a0a1a;
   border: 1px;
   border-style: solid;
-  border-color: #697262;
+  border-color: #0a4ade;
   border-radius: 12px;
 }
 
@@ -75,33 +75,4 @@ tooltip {
 
 tooltip label {
   color: white;
-}
-
-#battery {
-  background-color: #ffffff;
-  color: black;
-}
-
-#battery.charging,
-#battery.full,
-#battery.plugged {
-  color: white;
-  background-color: #26A65B;
-}
-
-@keyframes blink {
-  to {
-    background-color: #ffffff;
-    color: black;
-  }
-}
-
-#battery.warning:not(.charging) {
-  background: #f53c3c;
-  color: white;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: steps(12);
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
 }
